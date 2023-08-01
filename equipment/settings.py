@@ -116,6 +116,22 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+ACCOUNT_USERNAME_REQUIRED = True 
+ACCOUNT_EMAIL_VERIFICATION = "none"
+LOGIN_REDIRECT_URL = '/home'
+LOGOUT_REDIRECT_URL = '/home'
+
+ACCOUNT_FORMS = {
+    # 'add_email': 'allauth.account.forms.AddEmailForm',
+    # 'change_password': 'allauth.account.forms.ChangePasswordForm',
+    # 'disconnect': 'allauth.socialaccount.forms.DisconnectForm',
+    'login': 'allauth.account.forms.LoginForm',
+    # 'reset_password': 'allauth.account.forms.ResetPasswordForm',
+    # 'reset_password_from_key': 'allauth.account.forms.ResetPasswordKeyForm',
+    # 'set_password': 'allauth.account.forms.SetPasswordForm',
+    # 'signup': 'allauth.account.forms.SignupForm',
+    # 'user_token': 'allauth.account.forms.UserTokenForm',
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
