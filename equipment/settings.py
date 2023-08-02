@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     #my_apps
     'home',
     'widget_tweaks',
+    'loan',
+    'list',
 ]
 
 SITE_ID = 1
