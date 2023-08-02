@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     #my_apps
     'home',
+    'widget_tweaks',
 ]
 
 SITE_ID = 1

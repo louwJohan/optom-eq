@@ -1,16 +1,33 @@
 {% extends "base.html" %}
+{% load widget_tweaks %}
 {% load static %}
 
 {% block content %}
 
-
-
+<div class="row">
+  <div class="col mt-5">
+    
 <form class="login" method="POST" action="{% url 'account_login' %}">
-  <h1>Sign In</h1>
+  <h1 class="mb-5">Sign In</h1>
   {% csrf_token %}
-  {{ form.as_p}}
+  <div>
+    {{ form.login.errors | safe }}
+    {% render_field form.login class+="form-control mb-3" %}
+  </div>
+  <div>
+    {{ form.password.errors | safe }}
+    
+    {% render_field form.password class+="form-control mb-3" %}
+  </div>
+  
 
   <button class="btn btn-success" type="submit">Sign In</button>
 </form>
+  </div>
+  <div class="col mt-5">
+    <img src="{% static 'images/login.jpg' %}" alt="">
+  </div>
+</div>
+
 
 {% endblock %}
