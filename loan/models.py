@@ -1,9 +1,16 @@
 from django.db import models
 
 # Create your models here.
-class Loan(models.Model):
-    student = models.CharField(max_length=150)
+class Student(models.Model):
+    name = models.CharField(max_length=150)
+    surname = models.CharField(max_length=150)
     student_nr = models.CharField(max_length=15)
-    time = models.DateField(auto_now_add=True)
-    room = models.CharField(max_length=10)
+   
     
+
+
+class Loan(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    equipment = models.TextField()
+    equipment_taken = models.DateTimeField(auto_now_add=True)
+    equipment_returned = models.DateTimeField()
