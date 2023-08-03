@@ -5,7 +5,6 @@ class Student(models.Model):
     name = models.CharField(max_length=150)
     surname = models.CharField(max_length=150)
     student_nr = models.CharField(max_length=15)
-   
     
 
 
