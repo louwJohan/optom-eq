@@ -11,5 +11,5 @@ class Student(models.Model):
 class Loan(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     equipment = models.TextField()
-    equipment_taken = models.DateTimeField(auto_now_add=True)
-    equipment_returned = models.DateTimeField()
+    time_taken = models.DateTimeField(auto_now_add=True)
+    time_returned = models.DateTimeField()
