@@ -6,11 +6,13 @@ class Student(models.Model):
     surname = models.CharField(max_length=150)
     student_nr = models.CharField(max_length=15)
     
+    def __str__(self):
+        return self.student_nr
 
 
 class Loan(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    room = models.CharField(max_length=10)
     equipment = models.TextField()
     time_taken = models.DateTimeField(auto_now_add=True)
-    time_returned = models.DateTimeField()
+    time_returned = models.DateTimeField(auto_now_add=True)
+    room = models.CharField(max_length=10, default="0.00")
