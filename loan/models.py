@@ -10,6 +10,7 @@ class Student(models.Model):
 
 class Loan(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    room = models.CharField(max_length=10)
     equipment = models.TextField()
     time_taken = models.DateTimeField(auto_now_add=True)
     time_returned = models.DateTimeField()

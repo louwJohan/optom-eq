@@ -11,15 +11,16 @@
   <h1 class="mb-5">Sign In</h1>
   {% csrf_token %}
   <div>
-    {{ form.login.errors | safe }}
     {% render_field form.login class+="form-control mb-3" %}
   </div>
   <div>
-    {{ form.password.errors | safe }}
-    
     {% render_field form.password class+="form-control mb-3" %}
   </div>
-  
+  {% for key, value in form.errors.items %}
+      <div class="alert alert-danger" role="alert">
+        The username/password you specified is not correct!
+      </div>
+      {% endfor %}
 
   <button class="btn btn-success" type="submit">Sign In</button>
 </form>
