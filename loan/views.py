@@ -27,6 +27,12 @@ def health(request):
     if request.method == 'POST':
         student = request.POST.get('student')
         room = request.POST.get('room')
-        print(student, room)
+        volk = request.POST.get('volk')
+        ophth = request.POST.get('ophth')
+        anteye = request.POST.get('anteye')
+        posteye = request.POST.get('posteye')
+        focusrod = request.POST.get('focusrod')
+        stand = request.POST.get('stand')
+        print(student, room, volk, ophth, anteye, posteye, focusrod, stand)
     students = Student.objects.all()
     return render(request, 'health.html', {'students': students})

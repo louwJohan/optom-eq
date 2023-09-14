@@ -1,9 +1,15 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
+
   <div class="row justify-content-center mt-5">
-    <div class="col col-lg-6" >
-      <a class="btn btn-success" href="{% url 'refraction' %}">Refraction</a>
-      <a class="btn btn-success" href="{% url 'health' %}">Occular Health Assesment</a>
+    <div class="col justify-content-center d-grid" >
+      <img src="{% static 'images/ref.jpg'  %}" class="img-fluid" alt="trial frame">
+      <a class="btn btn-success mt-3" href="{% url 'refraction' %}">Refraction</a>
+    </div>
+    <div class="col justify-content-center d-grid">
+      <img src="{% static 'images/slit.jpg'  %}" class="img-fluid" alt="slitlamp">
+      <a class="btn btn-success mt-3" href="{% url 'health' %}">Occular Health Assesment</a>
     </div>
   </div>
 
