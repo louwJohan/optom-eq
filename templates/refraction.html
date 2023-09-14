@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col col-lg-6">
+
+        <h4>Refraction Equipment</h4>
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group mb-3">
+                <label for="student">Student</label>
+                <select name="student" id="student" class="form-control">
+                    {% for student in students %}
+                    <option value="{{student.name}} {{student.surname}}: {{student.student_nr}}">
+                        {{student.name}} {{student.surname}}: {{student.student_nr}}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <label for="room">Room</label>
+                <select name="room" id="room" class="form-control">
+                    <option value=""></option>
+                    <option value="0.133">01.33</option>
+                    <option value="01.12">01.12</option>
+                    <option value="01.08">01.08</option>
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <label for="ret">Retinoscope</label>
+                <select name="ret" id="ret" class="form-control">
+                    <option value="OPTOM11">OPTOM11</option>
+                    <option value="OPTOM2">OPTOM2</option>
+                    <option value="OPTOM5">OPTOM5</option>
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <label for="refbox">Refration Box</label>
+                <select name="refbox" id="refbox" class="form-control">
+                    <option value="Green 4">Green 4</option>
+                    <option value="Blue 8">Blue 8</option>
+                    <option value="Red 10">Red 10</option>
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <label for="modeleye">Model Eye</label>
+                <select name="modeleye" id="modeleye" class="form-control">
+                    <option value="56">56</option>
+                    <option value="64">64</option>
+                    <option value="67">67</option>
+                </select>
+            </div>
+            <div class="form-check  mb-3">
+                <input class="form-check-input" type="checkbox" value="Budgy Stick" id="budgy" name="budgy">
+                <label class="form-check-label" for="budgy">
+                    Budgy Stick
+                </label>
+            </div>
+            <div class="form-check  mb-3">
+                <input class="form-check-input" type="checkbox" value="PD Ruler" id="pdruler" name="pdruler">
+                <label class="form-check-label" for="pdruler">
+                    PD Ruler
+                </label>
+            </div>
+            <div class="form-check  mb-3">
+                <input class="form-check-input" type="checkbox" value="Occluder" id="occluder" name="occluder">
+                <label class="form-check-label" for="occluder">
+                    Occluder
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
