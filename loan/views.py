@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from loan.models import Student
+from django.shortcuts import render, redirect, reverse
+from loan.models import Student, Loan
 
 # Create your views here.
 def loan(request):
@@ -10,8 +10,10 @@ def longloan(request):
     return render(request, 'longloan.html', {'students': students})
 
 def refraction(request):
+    students = Student.objects.all()
     if request.method == 'POST':
-        student = request.POST.get('student')
+        student_id = request.POST.get('student')
+        student = Student.objects.get(id=int(student_id))
         room = request.POST.get('room')
         ret = request.POST.get('ret')
         refbox = request.POST.get('refbox')
@@ -19,13 +21,20 @@ def refraction(request):
         budgy = request.POST.get('budgy')
         pdruler = request.POST.get('pdruler')
         occluder = request.POST.get('occluder')
-        print(student, room, ret, refbox, modeleye, budgy, pdruler, occluder)
-    students = Student.objects.all()
+        equipment = f"Retniscope: {ret},\nModel Eye: {modeleye},\nRefraction Box: {refbox},\nBudgy Stick: {budgy},\nPD Ruler: {pdruler},\nOccluder: {occluder}"
+        form = Loan(student=student,
+                    room = room,
+                    equipment = equipment
+                    )
+        form.save()
+        return redirect(reverse('loan'))
+    
     return render(request, 'refraction.html', {'students': students})
 
 def health(request):
     if request.method == 'POST':
-        student = request.POST.get('student')
+        student_id = request.POST.get('student')
+        student = Student.objects.get(id=int(student_id))
         room = request.POST.get('room')
         volk = request.POST.get('volk')
         ophth = request.POST.get('ophth')
