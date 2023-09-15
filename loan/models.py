@@ -12,7 +12,9 @@ class Student(models.Model):
 
 class Loan(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    equipment = models.TextField()
+    equipment = models.CharField(max_length=250)
     time_taken = models.DateTimeField(auto_now_add=True)
-    time_returned = models.DateTimeField(auto_now_add=True)
+    time_returned = models.DateTimeField(auto_now_add=False)
     room = models.CharField(max_length=10, default="0.00")
+    equipment_returned = models.CharField(max_length=250, default="None")
+    all_returned = models.BooleanField(default=False)
