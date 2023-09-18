@@ -13,8 +13,9 @@ class Student(models.Model):
 class Loan(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     equipment = models.CharField(max_length=250)
-    time_taken = models.DateTimeField(auto_now_add=True)
-    time_returned = models.DateTimeField(auto_now_add=False, default='2023-12-12 12:00')
+    date = models.DateField(auto_now_add=True)
+    time_taken = models.TimeField(auto_now_add=True)
+    time_returned = models.TimeField(auto_now_add=False, default='12:00')
     room = models.CharField(max_length=10, default="0.00")
     equipment_returned = models.CharField(max_length=250, default="None")
     all_returned = models.BooleanField(default=False)

@@ -32,6 +32,7 @@ def refraction(request):
     return render(request, 'refraction.html', {'students': students})
 
 def health(request):
+    students = Student.objects.all()
     if request.method == 'POST':
         student_id = request.POST.get('student')
         student = Student.objects.get(id=int(student_id))
@@ -42,6 +43,13 @@ def health(request):
         posteye = request.POST.get('posteye')
         focusrod = request.POST.get('focusrod')
         stand = request.POST.get('stand')
-        print(student, room, volk, ophth, anteye, posteye, focusrod, stand)
-    students = Student.objects.all()
+        equipment = f"Volk: {volk},\nOphthalmoscope: {ophth},\nAnterior Eye: {anteye},\nPosterior Eye: {posteye},\nFocus Rod: {focusrod},\nStand: {stand}"
+        form = Loan(student=student,
+                    room = room,
+                    equipment = equipment
+                    )
+        form.save()
+        return redirect(reverse('loan'))
+        
+    
     return render(request, 'health.html', {'students': students})

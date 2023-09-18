@@ -4,7 +4,18 @@
 
   <div class="row justify-content-center mt-5">
     <div class="col justify-content-center d-grid" >
-     ListDisplay
+     
+      <ul class="list-group">
+        {% for item in list %}
+        <li class="list-group-item">
+          <strong>Name:</strong> {{item.student.name}} {{item.student.surname}},
+          <strong>Equipment:</strong> {{item.equipment}},
+          <strong>Time:</strong> {{item.time_taken}},
+          <strong>Room:</strong> {{item.room}},
+        </li>
+        {% endfor %}
+      </ul>
+     
     </div>
   </div>
 
