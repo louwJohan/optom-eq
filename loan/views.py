@@ -53,3 +53,6 @@ def health(request):
         
     
     return render(request, 'health.html', {'students': students})
+
+def returns(request):
+    return render(request, 'returns.html')

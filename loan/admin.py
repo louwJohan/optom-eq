@@ -12,7 +12,8 @@ class LoanAdmin(admin.ModelAdmin):
                    'student',
                    'room',
                    )
-    list_display = ('time_taken',
+    list_display = ('date',
+                    'time_taken',
                     'student',
                     'equipment',
                     'room',

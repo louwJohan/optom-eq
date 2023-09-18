@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from loan.models import Loan
+import datetime
 
 # Create your views here.
 def list(request):
@@ -7,5 +8,6 @@ def list(request):
 
 def list_display(request):
     room = request.GET.get('room')
-    list = Loan.objects.filter(room=room)
+    date = datetime.date.today()
+    list = Loan.objects.filter(room=room, date=date)
     return render(request, 'list_display.html',{'list':list})

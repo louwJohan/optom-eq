@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='loan',
             name='date',
-            field=models.DateField(auto_now_add=True, default=1988),
+            field=models.DateField(auto_now_add=True, default='1988-12-12'),
             preserve_default=False,
         ),
         migrations.AlterField(
