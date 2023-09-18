@@ -54,5 +54,6 @@ def health(request):
     
     return render(request, 'health.html', {'students': students})
 
-def returns(request):
-    return render(request, 'returns.html')
+def returns(request,pk):
+    returns = Loan.objects.get(pk=pk)
+    return render(request, 'returns.html',{'returns':returns})

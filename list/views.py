@@ -9,5 +9,5 @@ def list(request):
 def list_display(request):
     room = request.GET.get('room')
     date = datetime.date.today()
-    list = Loan.objects.filter(room=room, date=date)
-    return render(request, 'list_display.html',{'list':list})
+    list = Loan.objects.filter(room=room, date=date, all_returned=False)
+    return render(request, 'list_display.html',{'list':list, 'room': room})

@@ -2,7 +2,142 @@
 {% block content %}
 <div class="row justify-content-center mt-5">
     <div class="col col-lg-6">
-        Returns
+        <h3>Returns</h3>
+        {% if returns.room == "01.29a" or "01.09" %}
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group mb-3">
+
+                {{returns.student.name}} {{returns.student.surname}}: {{returns.student.student_nr}}
+
+            </div>
+            <div class="form-group mb-3">
+                {{returns.room}}
+            </div>
+            <div class="form-group mb-3">
+                <label for="volk">Volk Lens</label>
+                <select name="volk" id="volk" class="form-control">
+                    <option value="None">Choose an Option</option>
+                    <option value="OPTOM370">OPTOM370</option>
+                    <option value="OPTOM374">OPTOM374</option>
+                    <option value="OPTOM377">OPTOM377</option>
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <label for="ophth">Ophthalmoscope</label>
+                <select name="ophth" id="ophth" class="form-control">
+                    <option value="None">Choose an Option</option>
+                    <option value="OPTOM9">OPTOM9</option>
+                    <option value="OPTOM20">OPTOM20</option>
+                    <option value="OPTOM38">OPTOM38</option>
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <label name="anteye" for="anteye">Anterior Eye</label>
+                <select name="anteye" id="anteye" class="form-control">
+                    <option value="None">Choose an Option</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <label for="posteye">Posterior Eye</label>
+                <select name="posteye" id="posteye" class="form-control">
+                    <option value="None">Choose an Option</option>
+                    <option value="1">1</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <label for="focusrod">Focusing Rod</label>
+                <select name="focusrod" id="focusrod" class="form-control">
+                    <option value="None">Choose an Option</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="stand" id="stand" name="stand">
+                <label class="form-check-label" for="stand">
+                    Stand
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary mt-5">Submit</button>
+        </form>
+        {% else %}
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group mb-3">
+                <label for="student">Student</label>
+                <select name="student" id="student" class="form-control">
+                    {% for student in students %}
+                    <option value="{{student.pk}}">
+                        {{returns.student.name}} {{returns.student.surname}}: {{returns.student.student_nr}}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <label for="room">Room</label>
+                <select name="room" id="room" class="form-control">
+                    <option value="{{returns.room}}">{{returns.room}}</option>
+
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <label for="ret">Retinoscope</label>
+                <select name="ret" id="ret" class="form-control">
+                    <option value="None">Choose an option</option>
+                    <option value="OPTOM11">OPTOM11</option>
+                    <option value="OPTOM2">OPTOM2</option>
+                    <option value="OPTOM5">OPTOM5</option>
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <label for="refbox">Refration Box</label>
+                <select name="refbox" id="refbox" class="form-control">
+                    <option value="None">Choose an option</option>
+                    <option value="Green 4">Green 4</option>
+                    <option value="Blue 8">Blue 8</option>
+                    <option value="Red 10">Red 10</option>
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <label for="modeleye">Model Eye</label>
+                <select name="modeleye" id="modeleye" class="form-control">
+                    <option value="None">Choose an option</option>
+                    <option value="56">56</option>
+                    <option value="64">64</option>
+                    <option value="67">67</option>
+                </select>
+            </div>
+            <div class="form-check  mb-3">
+                <input class="form-check-input" type="checkbox" value="Budgy Stick" id="budgy" name="budgy">
+                <label class="form-check-label" for="budgy">
+                    Budgy Stick
+                </label>
+            </div>
+            <div class="form-check  mb-3">
+                <input class="form-check-input" type="checkbox" value="PD Ruler" id="pdruler" name="pdruler">
+                <label class="form-check-label" for="pdruler">
+                    PD Ruler
+                </label>
+            </div>
+            <div class="form-check  mb-3">
+                <input class="form-check-input" type="checkbox" value="Occluder" id="occluder" name="occluder">
+                <label class="form-check-label" for="occluder">
+                    Occluder
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+        </form>
+
+        {% endif %}
     </div>
 </div>
 
