@@ -8,13 +8,14 @@ class LoanAdmin(admin.ModelAdmin):
     Registering the Timeslot database in the admin panel.
     Setting list display and filter items
     """
-    list_filter = ('time_taken',
-                   'student',
+    list_filter = ('date',
+                   'all_returned',
                    'room',
                    )
-    list_display = ('pk',
+    list_display = (
                     'date',
                     'time_taken',
+                    'time_returned',
                     'student',
                     'equipment',
                     'room',

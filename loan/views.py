@@ -1,5 +1,6 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, get_object_or_404, reverse
 from loan.models import Student, Loan
+from datetime import datetime
 
 # Create your views here.
 def loan(request):
@@ -43,7 +44,7 @@ def health(request):
         posteye = request.POST.get('posteye')
         focusrod = request.POST.get('focusrod')
         stand = request.POST.get('stand')
-        equipment = f"Volk: {volk},\nOphthalmoscope: {ophth},\nAnterior Eye: {anteye},\nPosterior Eye: {posteye},\nFocus Rod: {focusrod},\nStand: {stand}"
+        equipment = f"Volk: {volk},Ophthalmoscope: {ophth},Anterior Eye: {anteye},Posterior Eye: {posteye},Focus Rod: {focusrod},Stand: {stand}"
         form = Loan(student=student,
                     room = room,
                     equipment = equipment
@@ -55,5 +56,15 @@ def health(request):
     return render(request, 'health.html', {'students': students})
 
 def returns(request,pk):
-    returns = Loan.objects.get(pk=pk)
-    return render(request, 'returns.html',{'returns':returns})
+    returns = get_object_or_404(Loan, id=pk)
+    equipment = returns.equipment.split(",")
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    print(current_time)
+    if request.method == 'POST':
+        returns.equipment_returned = returns.equipment
+        returns.all_returned = True
+        returns.time_returned = current_time
+        returns.save()
+        return redirect(reverse('loan'))
+    return render(request, 'returns.html',{'returns':returns, 'equipment': equipment})

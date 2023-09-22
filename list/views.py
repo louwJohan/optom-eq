@@ -11,3 +11,7 @@ def list_display(request):
     date = datetime.date.today()
     list = Loan.objects.filter(room=room, date=date, all_returned=False)
     return render(request, 'list_display.html',{'list':list, 'room': room})
+
+def not_returned(request):
+    list = Loan.objects.filter(all_returned=False)
+    return render(request, 'not_returned.html', {'list': list})
