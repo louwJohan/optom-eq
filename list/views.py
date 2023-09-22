@@ -15,3 +15,6 @@ def list_display(request):
 def not_returned(request):
     list = Loan.objects.filter(all_returned=False)
     return render(request, 'not_returned.html', {'list': list})
+
+def edit(request, pk):
+    return render(request, 'edit.html')

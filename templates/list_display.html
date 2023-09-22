@@ -17,8 +17,10 @@
           <strong>Time:</strong> {{item.time_taken}},
           <strong>Room:</strong> {{item.room}}
           <a class="btn btn-success me-3" href="{% url 'returns' item.pk %}">
+          
             Return
           </a>
+          <a class="btn btn-danger me-3" href="{% url 'edit' item.pk %}">Edit</a>
         </li>
         
         {% endfor %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col col-lg-6">
+        <h3>Edit</h3>
+        <form method="POST">
+            {% csrf_token %}
+            
+            <strong>Student:</strong> {{returns.student.name}} {{returns.student.surname}}: {{returns.student.student_nr}}
+            <br>
+            <strong>Room:</strong> {{returns.room}}
+            {% for item in equipment %}
+                <p>{{item}}</p>
+            {% endfor %}            
+            <button type="submit" class="btn btn-primary mt-5">Submit</button>
+        </form>
+    </div>
+</div>
+  <a class="btn btn-success mt-3" href="{% url 'list' %}">Back</a>
+{% endblock %}
