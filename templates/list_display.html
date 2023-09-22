@@ -6,6 +6,9 @@
     <div class="col justify-content-center d-grid" >
      <h3>Room {{room}}</h3>
       <ul class="list-group">
+        {% if list|length == 0 %}
+          <h5>There are no Booking for this room</h5>
+        {% else %}
         {% for item in list %}
         <li class="list-group-item">
           <strong>Name:</strong> {{item.student.name}} {{item.student.surname}},
@@ -19,6 +22,7 @@
         </li>
         
         {% endfor %}
+        {% endif %}
       </ul>
      
     </div>
