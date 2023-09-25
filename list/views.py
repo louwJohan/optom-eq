@@ -17,4 +17,9 @@ def not_returned(request):
     return render(request, 'not_returned.html', {'list': list})
 
 def edit(request, pk):
-    return render(request, 'edit.html')
+    item = Loan.objects.get(id=pk)
+    equipment = item.equipment.split(',')
+    eq = []
+    for item in equipment:
+        eq.append(item.split(':'))
+    return render(request, 'edit.html',{'item': item, 'eq':eq})

@@ -22,7 +22,7 @@ def refraction(request):
         budgy = request.POST.get('budgy')
         pdruler = request.POST.get('pdruler')
         occluder = request.POST.get('occluder')
-        equipment = f"Retniscope: {ret},\nModel Eye: {modeleye},\nRefraction Box: {refbox},\nBudgy Stick: {budgy},\nPD Ruler: {pdruler},\nOccluder: {occluder}"
+        equipment = f"Retniscope:{ret},Model Eye:{modeleye},Refraction Box:{refbox},Budgy Stick:{budgy},PD Ruler:{pdruler},Occluder:{occluder}"
         form = Loan(student=student,
                     room = room,
                     equipment = equipment
@@ -44,7 +44,7 @@ def health(request):
         posteye = request.POST.get('posteye')
         focusrod = request.POST.get('focusrod')
         stand = request.POST.get('stand')
-        equipment = f"Volk: {volk},Ophthalmoscope: {ophth},Anterior Eye: {anteye},Posterior Eye: {posteye},Focus Rod: {focusrod},Stand: {stand}"
+        equipment = f"Volk:{volk},Ophthalmoscope:{ophth},Anterior Eye:{anteye},Posterior Eye:{posteye},Focus Rod:{focusrod},Stand:{stand}"
         form = Loan(student=student,
                     room = room,
                     equipment = equipment
