@@ -3,17 +3,19 @@
 <div class="row justify-content-center mt-5">
     <div class="col col-lg-6">
         <h3>Edit</h3>
-        {% if item.room == '01.09' or item.room == '01.29a' %}
-        <h4>Occular Health Assesment</h4>
-        <form method="POST">
+        {{equipment}}
+        {% if items.room == "01.29a" or items.room == "01.09" %}
+            <h4>Occular Health Assesment</h4>
+            <form method="POST">
             {% csrf_token %}
             <div class="form-group mb-3">
-                <strong>Student: </strong> {{item.student.name}} {{item.student.surname}}: {{item.student.student_nr}}
+                <strong>Student: </strong> {{items.student.name}} {{items.student.surname}}: {{items.student.student_nr}}
                     
             </div>
             <div class="form-group mb-3">
                 <label for="room">Room</label>
-                <select name="room" id="room" class="form-control" value="{{item.room}}">
+                <select name="room" id="room" class="form-control">
+                    <option value="{{items.room}}">{{items.room}}</option>
                     <option value="01.29a">01.29a</option>
                     <option value="01.09">01.09</option>
                 </select>
@@ -71,17 +73,18 @@
             </div>
             <button type="submit" class="btn btn-primary mt-3 ms-2">Submit</button>
             <a class="btn btn-primary mt-3 ms-5" href="{% url 'loan' %}">Back</a>
-        </form>
+            </form>
         {% else %}
-        <h4>Refraction Equipment</h4>
-        <form method="POST">
+            <h4>Refraction Equipment</h4>
+            <form method="POST">
             {% csrf_token %}
             <div class="form-group mb-3">
-                <strong>Student: </strong> {{item.student.name}} {{item.student.surname}}: {{item.student.student_nr}}
+                <strong>Student: </strong> {{items.student.name}} {{items.student.surname}}: {{items.student.student_nr}}
             </div>
             <div class="form-group mb-3">
                 <label for="room">Room</label>
-                <select name="room" id="room" class="form-control" value="{{item.room}}">
+                <select name="room" id="room" class="form-control">
+                    <option value="{{items.room}}">{{items.room}}</option>
                     <option value="01.33">01.33</option>
                     <option value="01.12">01.12</option>
                     <option value="01.08">01.08</option>
@@ -134,7 +137,7 @@
             </div>
             <button type="submit" class="btn btn-primary mt-3 ms-2">Submit</button>
             <a class="btn btn-primary mt-3 ms-5" href="{% url 'loan' %}">Back</a>
-        </form>
+            </form>
         {% endif %}
     </div>
 </div>

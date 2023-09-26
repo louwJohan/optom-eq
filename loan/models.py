@@ -22,3 +22,40 @@ class Loan(models.Model):
 
     def __str__(self):
         return self.student.student_nr
+    
+
+class Ref(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    date = models.DateField(auto_now_add=True)
+    time_taken = models.TimeField(auto_now_add=True)
+    room = models.CharField(max_length=10, default="0.00")
+    ref_box = models.CharField(max_length=10)
+    ret = models.CharField(max_length=10)
+    model_eye = models.CharField(max_length=10)
+    budgy_stick = models.BooleanField(default=False)
+    pd_ruler = models.BooleanField(default=False)
+    occluder = models.BooleanField(default=False)
+    recording_eq = models.CharField(max_length=10)
+    time_returned = models.TimeField(auto_now_add=False, default='12:00')
+    all_returned = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.id
+    
+class Health(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    date = models.DateField(auto_now_add=True)
+    time_taken = models.TimeField(auto_now_add=True)
+    room = models.CharField(max_length=10, default="0.00")
+    volk = models.CharField(max_length=10)
+    ophthalmoscope = models.CharField(max_length=10)
+    ant_eye = models.CharField(max_length=10)
+    post_eye = models.CharField(max_length=10)
+    focusrod = models.CharField(max_length=10)
+    stand = models.BooleanField(default=False)
+    recording_eq = models.CharField(max_length=10)
+    time_returned = models.TimeField(auto_now_add=False, default='12:00')
+    all_returned = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.id
