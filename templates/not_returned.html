@@ -6,6 +6,7 @@
   <div class="col justify-content-center d-grid">
     {% if ref|length > 0 or health|length > 0 %}
     <h3>Items Not Returned</h3>
+    {% if room == "ref" %}
     <h4>Refraction</h4>
     <ul class="list-group">
       {% for r in ref %}
@@ -20,6 +21,7 @@
       </li>
       {% endfor %}
     </ul>
+    {% else %}
     <h4>Occular Health Assesment</h4>
     <ul class="list-group">
       {% for item in health %}
@@ -34,6 +36,7 @@
       </li>
       {% endfor %}
     </ul>
+    {% endif %}
     {% else %}
     <h3>All items returned</h3>
     {% endif %}

@@ -19,7 +19,21 @@
         </form>
         </div>
     </div>
-    <a class="btn btn-primary mt-3" href="{% url 'not_returned' %}">Items not returned</a>
+    <div class="row justify-content-center mt-5">
+      <div class="col-lg-4">
+        <form action="{% url 'not_returned' %}" method="GET" class="form-control">
+          {% csrf_token %}
+        <div class="form-group mt-3">
+          <label for="returns">Items not returned</label>
+          <select name="returns" id="returns" class="form-control">
+              <option value="ref">Refraction</option>
+              <option value="health">Occular Health Assesment</option>
+          </select>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+      </form>
+      </div>
+    </div>
   
 
 {% endblock %}

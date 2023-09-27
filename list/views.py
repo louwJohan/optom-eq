@@ -19,6 +19,8 @@ def list_display(request):
                                                 })
 
 def not_returned(request):
+    room = request.GET.get('returns')
+    print(room)
     ref = Ref.objects.filter(all_returned=False)
     health = Health.objects.filter(all_returned=False)
     return render(request, 'not_returned.html', {'ref':ref, 'health':health})
