@@ -2,29 +2,43 @@
 {% load static %}
 {% block content %}
 
-  <div class="row justify-content-center mt-5">
-    <div class="col justify-content-center d-grid" >
-    {% if list|length > 0 %}
-     <h3>Items Not Returned</h3>
-      <ul class="list-group">
-        {% for item in list %}
-        <li class="list-group-item">
-          <strong>Name:</strong> {{item.student.name}} {{item.student.surname}},
-          <strong>Equipment:</strong> {{item.equipment}},
-          <strong>Time:</strong> {{item.time_taken}},
-          <strong>Room:</strong> {{item.room}}
-          <a class="btn btn-success me-3" href="{% url 'returns' item.pk %}">
-            Return
-          </a>
-        </li>
-        
-        {% endfor %}
-      </ul>
-      {% else %}
-      <h3>All items returned</h3>
-      {% endif %}
-    </div>
+<div class="row justify-content-center mt-5">
+  <div class="col justify-content-center d-grid">
+    {% if ref|length > 0 or health|length > 0 %}
+    <h3>Items Not Returned</h3>
+    <h4>Refraction</h4>
+    <ul class="list-group">
+      {% for r in ref %}
+      <li class="list-group-item">
+        <strong>Name:</strong> {{r.student.name}} {{r.student.surname}},
+        <strong>Date:</strong> {{r.date}}
+        <strong>Time:</strong> {{r.time_taken}},
+        <strong>Room:</strong> {{r.room}}
+        <a class="btn btn-success me-3" href="{% url 'returns' r.pk %}">
+          Return
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+    <h4>Occular Health Assesment</h4>
+    <ul class="list-group">
+      {% for item in health %}
+      <li class="list-group-item">
+        <strong>Name:</strong> {{item.student.name}} {{item.student.surname}},
+        <strong>Date:</strong> {{item.date}}
+        <strong>Time:</strong> {{item.time_taken}},
+        <strong>Room:</strong> {{item.room}}
+        <a class="btn btn-success me-3" href="{% url 'returns' item.pk %}">
+          Return
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <h3>All items returned</h3>
+    {% endif %}
   </div>
-  <a class="btn btn-primary mt-5" href="{% url 'list' %}">Back</a>
+</div>
+<a class="btn btn-primary mt-5" href="{% url 'list' %}">Back</a>
 
 {% endblock %}

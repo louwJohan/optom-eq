@@ -3,17 +3,62 @@
 <div class="row justify-content-center mt-5">
     <div class="col col-lg-6">
         <h3>Returns</h3>
+        {% if room == "01.29a" or room == "01.09" %}
         <form method="POST">
             {% csrf_token %}
-            
             <strong>Student:</strong> {{returns.student.name}} {{returns.student.surname}}: {{returns.student.student_nr}}
             <br>
+            <strong>Date:</strong> {{returns.date}}
+            <br>
+            <strong>Time:</strong> {{returns.time_taken}}
+            <br>
             <strong>Room:</strong> {{returns.room}}
-            {% for item in equipment %}
-                <p>{{item}}</p>
-            {% endfor %}            
+            <br>
+            <strong>Volk:</strong> {{returns.volk}}
+            <br>
+            <strong>Ophthalmoscope:</strong> {{returns.ophthalmoscope}}
+            <br>
+            <strong>Anterior Eye:</strong> {{returns.ant_eye}}
+            <br>
+            <strong>Posterior Eye:</strong> {{returns.post_eye}}
+            <br>
+            <strong>Focus Rod:</strong> {{returns.focusrod}}
+            <br>
+            <strong>Stand:</strong> {{returns.stand}}
+            <br>
+            <strong>Recording Equipment:</strong> {{returns.recording_eq}}.
+            <br>   
             <button type="submit" class="btn btn-primary mt-5">Submit</button>
         </form>
+        {% else %}
+        <form method="POST">
+            {% csrf_token %}
+            <strong>Student:</strong> {{returns.student.name}} {{returns.student.surname}}: {{returns.student.student_nr}}
+            <br>
+            <strong>Date:</strong> {{returns.date}}
+            <br>
+            <strong>Time:</strong> {{returns.time_taken}}
+            <br>
+            <strong>Room:</strong> {{returns.room}}
+            <br>
+            <strong>Box:</strong> {{returns.ref_box}}
+            <br>
+            <strong>Retinoscope:</strong> {{returns.ret}}
+            <br>
+            <strong>Model Eye:</strong> {{returns.model_eye}}
+            <br>
+            <strong>Budgy stick:</strong> {{returns.budgy_stick}}
+            <br>
+            <strong>PD Ruler:</strong> {{returns.pd_ruler}}
+            <br>
+            <strong>Occluder:</strong> {{returns.occluder}}
+            <br>
+            <strong>Recording Equipment:</strong> {{returns.recording_eq}}
+            <br>
+                       
+            <button type="submit" class="btn btn-primary mt-5">Submit</button>
+        </form>
+        {% endif %}
     </div>
 </div>
   <a class="btn btn-success mt-3" href="{% url 'list' %}">Back</a>

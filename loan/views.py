@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
-from loan.models import Student, Loan
+from loan.models import Student, Ref, Health
 from datetime import datetime
 
 # Create your views here.
@@ -22,10 +22,16 @@ def refraction(request):
         budgy = request.POST.get('budgy')
         pdruler = request.POST.get('pdruler')
         occluder = request.POST.get('occluder')
-        equipment = f"Retniscope:{ret},Model Eye:{modeleye},Refraction Box:{refbox},Budgy Stick:{budgy},PD Ruler:{pdruler},Occluder:{occluder}"
-        form = Loan(student=student,
+        recording = request.POST.get('recording')
+        form = Ref(student=student,
                     room = room,
-                    equipment = equipment
+                    ret=ret,
+                    ref_box=refbox,
+                    model_eye=modeleye,
+                    budgy_stick=budgy,
+                    pd_ruler=pdruler,
+                    occluder=occluder,
+                    recording_eq=recording
                     )
         form.save()
         return redirect(reverse('loan'))
@@ -44,10 +50,16 @@ def health(request):
         posteye = request.POST.get('posteye')
         focusrod = request.POST.get('focusrod')
         stand = request.POST.get('stand')
-        equipment = f"Volk:{volk},Ophthalmoscope:{ophth},Anterior Eye:{anteye},Posterior Eye:{posteye},Focus Rod:{focusrod},Stand:{stand}"
-        form = Loan(student=student,
+        recording = request.POST.get('recording')
+        form = Health(student=student,
                     room = room,
-                    equipment = equipment
+                    volk=volk,
+                    ophthalmoscope=ophth,
+                    ant_eye=anteye,
+                    post_eye=posteye,
+                    focusrod=focusrod,
+                    stand=stand,
+                    recording_eq=recording
                     )
         form.save()
         return redirect(reverse('loan'))
@@ -56,15 +68,18 @@ def health(request):
     return render(request, 'health.html', {'students': students})
 
 def returns(request,pk):
-    returns = get_object_or_404(Loan, id=pk)
-    equipment = returns.equipment.split(",")
+    returns = None
+    room = request.session.get('room')
+    if room == "01.29a" or room == "01.09":
+        returns = get_object_or_404(Health, pk=pk)
+    else:
+        returns = get_object_or_404(Ref, pk=pk)
     now = datetime.now()
+    
     current_time = now.strftime("%H:%M:%S")
-    print(current_time)
     if request.method == 'POST':
-        returns.equipment_returned = returns.equipment
         returns.all_returned = True
         returns.time_returned = current_time
         returns.save()
         return redirect(reverse('loan'))
-    return render(request, 'returns.html',{'returns':returns, 'equipment': equipment})
+    return render(request, 'returns.html',{'returns':returns, 'room':room})
