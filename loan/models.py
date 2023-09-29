@@ -37,7 +37,7 @@ class Ref(models.Model):
     occluder = models.BooleanField(default=False, null=True)
     recording_eq = models.CharField(max_length=10, null=True)
     time_returned = models.TimeField(auto_now_add=False, default='12:00')
-    all_returned = models.BooleanField(default=False)
+    all_returned = models.BooleanField(default=False, null=True)
 
     def __str__(self):
         return self.student.student_nr
@@ -55,7 +55,7 @@ class Health(models.Model):
     stand = models.BooleanField(default=False, null=True)
     recording_eq = models.CharField(max_length=10, null=True)
     time_returned = models.TimeField(auto_now_add=False, default='12:00')
-    all_returned = models.BooleanField(default=False)
+    all_returned = models.BooleanField(default=False, null=True)
 
     def __str__(self):
         return self.student.student_nr

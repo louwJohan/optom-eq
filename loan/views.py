@@ -82,5 +82,5 @@ def returns(request,pk):
         returns.all_returned = True
         returns.time_returned = current_time
         returns.save()
-        return redirect(reverse('loan'))
+        return redirect(reverse('list'))
     return render(request, 'returns.html',{'returns':returns, 'room':room})

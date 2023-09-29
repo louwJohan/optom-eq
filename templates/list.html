@@ -20,25 +20,4 @@
         </div>
     </div>
 
-    <div class="row justify-content-center mt-5">
-      <div class="col-lg-4">
-        <h3>Items not returned</h3>
-        <form action="{% url 'not_returned' %}" method="GET" class="form-control">
-          {% csrf_token %}
-        <div class="form-group mt-3">
-          <label for="returns">Room</label>
-          <select name="returns" id="returns" class="form-control">
-              <option value="01.33">01.33</option>
-              <option value="01.29a">01.29a</option>
-              <option value="01.08">01.08</option>
-              <option value="01.09">01.09</option>
-              <option value="01.12">01.12</option>
-          </select>
-      </div>
-      <button type="submit" class="btn btn-primary mt-3">Submit</button>
-      </form>
-      </div>
-    </div>
-  
-
 {% endblock %}

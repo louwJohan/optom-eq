@@ -11,20 +11,13 @@ def list_display(request):
     date = datetime.date.today()
     request.session['room'] = room
     if room == "01.29a" or room == "01.09":
-        list = Health.objects.filter(room=room, date=date, all_returned=False)
+        list = Health.objects.filter(room=room, all_returned=False)
     else:
-        list = Ref.objects.filter(room=room, date=date, all_returned=False)
+        list = Ref.objects.filter(room=room, all_returned=False)
     return render(request, 'list_display.html',{'list':list,
                                                 'room': room
                                                 })
 
-def not_returned(request):
-    room = request.GET.get('returns')
-    if room == "01.29a" or room == "01.09":
-        returns = Health.objects.filter(all_returned=False)
-    else:
-        returns = Ref.objects.filter(all_returned=False)
-    return render(request, 'not_returned.html', {'returns':returns})
 
 def edit(request, pk):
     room = request.session.get('room')
