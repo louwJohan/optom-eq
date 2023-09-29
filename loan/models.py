@@ -52,7 +52,7 @@ class Health(models.Model):
     ant_eye = models.CharField(max_length=10)
     post_eye = models.CharField(max_length=10)
     focusrod = models.CharField(max_length=10)
-    stand = models.BooleanField(default=False)
+    stand = models.BooleanField(default=False, null=True)
     recording_eq = models.CharField(max_length=10, null=True)
     time_returned = models.TimeField(auto_now_add=False, default='12:00')
     all_returned = models.BooleanField(default=False)

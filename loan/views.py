@@ -70,12 +70,13 @@ def health(request):
 def returns(request,pk):
     returns = None
     room = request.session.get('room')
+    print(room)
     if room == "01.29a" or room == "01.09":
         returns = get_object_or_404(Health, pk=pk)
     else:
         returns = get_object_or_404(Ref, pk=pk)
     now = datetime.now()
-    
+    print(returns)
     current_time = now.strftime("%H:%M:%S")
     if request.method == 'POST':
         returns.all_returned = True

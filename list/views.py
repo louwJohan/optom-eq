@@ -20,10 +20,11 @@ def list_display(request):
 
 def not_returned(request):
     room = request.GET.get('returns')
-    print(room)
-    ref = Ref.objects.filter(all_returned=False)
-    health = Health.objects.filter(all_returned=False)
-    return render(request, 'not_returned.html', {'ref':ref, 'health':health})
+    if room == "01.29a" or room == "01.09":
+        returns = Health.objects.filter(all_returned=False)
+    else:
+        returns = Ref.objects.filter(all_returned=False)
+    return render(request, 'not_returned.html', {'returns':returns})
 
 def edit(request, pk):
     room = request.session.get('room')
