@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
-from loan.models import Student, Ref, Health
+from loan.models import Student, Ref, Health, Long
 from datetime import datetime
 
 # Create your views here.
@@ -7,8 +7,34 @@ def loan(request):
     return render(request, 'loan.html')
 
 def longloan(request):
+    return render(request, 'longloan.html')
+
+def longForm(request):
     students = Student.objects.all()
-    return render(request, 'longloan.html', {'students': students})
+    if request.method == 'POST':
+        student_id = request.POST.get('student')
+        student = Student.objects.get(id=int(student_id))
+        kit = request.POST.get('kit')
+        return_date = request.POST.get('return_date')
+        form = Long(student=student,
+                    kit=kit,
+                    return_date=return_date
+                    )
+        form.save()
+        return redirect('longloan')
+    return render(request, 'longform.html', {'students': students})
+
+def longList(request):
+    list = Long.objects.filter(returned=False)
+    return render(request, 'longlist.html', {'list': list})
+
+def long_returns(request, pk):
+    item = Long.objects.get(pk=pk)
+    if request.method == 'POST':
+        item.returned = True
+        item.save()
+        return redirect(reverse('longlist'))
+    return render(request, 'longreturn.html', {'item': item})
 
 def refraction(request):
     students = Student.objects.all()

@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1>Long term loan</h1>
+<div class="row mt-5">
+    <div class="col">
+        <a class="btn btn-lg btn-success me-3" href="{% url 'longform' %}">Loan a Kit</a>
+        <a class="btn btn-lg btn-success ms-3" href="{% url 'longlist' %}">Outstanding Kit</a>
+    </div>
+</div>
 
 {% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Long term loan</h1>
+<div class="row justify-content-center mt-5">
+    <div class="col col-lg-6">
+        <ul class="list-group">
+            {% if list|length == 0 %}
+              <h5 class="mt-5">There are no outstanding kits</h5>
+            {% else %}
+                {% for item in list %}
+                  <li class="list-group-item">
+                  <strong>Name:</strong> {{item.student.name}} {{item.student.surname}},
+                  <strong>Kit:</strong> {{item.kit}},
+                  <strong>Date:</strong> {{item.date}},
+                  <strong>Return Date:</strong> {{item.return_date}} 
+                  <a class="btn btn-success me-3" href="{% url 'longreturn' item.pk %}">
+                    Return
+                  </a>
+                  </li>
+                   
+                 {% endfor %}
+            {% endif %}
+          </ul>
+    </div>
+</div>
+
+{% endblock %}

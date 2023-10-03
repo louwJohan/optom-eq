@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col col-lg-6">
+        <h3>Returns</h3>
+        <form method="POST">
+            {% csrf_token %}
+            <strong>Student:</strong> {{item.student.name}} {{item.student.surname}}: {{item.student.student_nr}}
+            <br>
+            <strong>Date:</strong> {{item.date}}
+            <br>
+            <strong>Kit:</strong> {{item.kit}}
+            <br>
+            <strong>Return Date:</strong> {{item.return_date}}
+            <br>
+            <button type="submit" class="btn btn-primary mt-5">Submit</button>
+        </form>
+    </div>
+</div>
+  <a class="btn btn-success mt-3" href="{% url 'longlist' %}">Back</a>
+{% endblock %}

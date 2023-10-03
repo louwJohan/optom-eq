@@ -59,3 +59,10 @@ class Health(models.Model):
 
     def __str__(self):
         return self.student.student_nr
+    
+class Long(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    date = models.DateField(auto_now_add=True)
+    kit = models.CharField(max_length=150)
+    return_date = models.DateField(auto_now=False, null=True)
+    returned = models.BooleanField(default=False)
