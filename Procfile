@@ -1,1 +1,1 @@
-web: gunicorn equipment.wsgi --log-file
+web: gunicorn equipment.wsgi --log-file -
