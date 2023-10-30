@@ -36,7 +36,7 @@ if dev == 1:
 else:
     DEBUG = True
 
-ALLOWED_HOSTS = ["web-production-12f02.up.railway.app"]
+ALLOWED_HOSTS = ["web-production-12f02.up.railway.app", "uoboptometry.co.uk"]
 
 # RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 # if RENDER_EXTERNAL_HOSTNAME:
